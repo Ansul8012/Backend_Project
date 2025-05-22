@@ -12,16 +12,17 @@ export const signUp = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
-    // Check if a user already exists
-    const existingUser = await User.findOne({ email });
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: 'Name, email, and password are required' });
+    }
 
-    if(existingUser) {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
       const error = new Error('User already exists');
       error.statusCode = 409;
       throw error;
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -39,13 +40,14 @@ export const signUp = async (req, res, next) => {
         token,
         user: newUsers[0],
       }
-    })
+    });
   } catch (error) {
     await session.abortTransaction();
     session.endSession();
     next(error);
   }
-}
+};
+
 
 export const signIn = async (req, res, next) => {
   try {
