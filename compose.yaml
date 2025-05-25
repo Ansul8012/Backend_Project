@@ -22,3 +22,22 @@ services:
         - path: ./subscription
           target: /app
           action: sync
+
+
+# environment:
+#       - PORT=${PORT}
+#       - SERVER_URL=${SERVER_URL}
+#       - NODE_ENV=${NODE_ENV}
+#       - DB_URI=${DB_URI}
+#       - JWT_SECRET=${JWT_SECRET}
+#       - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
+#       - ARCJET_KEY=${ARCJET_KEY}
+#       - ARCJET_ENV=${ARCJET_ENV}
+
+
+# By default, docker-compose looks for a file named .env in the same directory as your docker-compose.yml and loads environment variables from it automatically.
+# You do NOT need to explicitly reference .env in the YAML file.
+
+# Rename .env.development.local to .env (recommended for local development).
+# Or, explicitly specify the env file when running docker-compose:
+# docker-compose --env-file .env.development.local
