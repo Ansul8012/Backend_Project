@@ -22,7 +22,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/subscriptions', subscriptionRouter);
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the Subscription Tracker API!');
+  res.send('Welcome to the Subscription Tracker API! lalala yoooo hie');
 });
 
 app.listen(PORT, async () => {
